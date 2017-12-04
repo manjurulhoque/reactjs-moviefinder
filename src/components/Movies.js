@@ -17,7 +17,7 @@ export default class Movies extends Component {
     this.getPopular();
   }
   getPopular(){
-    fetch("https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=48ad32a11a651fe635e36910709288fe")
+    fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${this.state.apiKey}`)
     .then((result) => {
       // Get the result
       // If we want text, call result.text()
@@ -25,14 +25,14 @@ export default class Movies extends Component {
     }).then((jsonResult) => {
       // Do something with the result
       this.setState({popular: jsonResult.results});
-      console.log(this.state.popular);
+      // console.log(this.state.popular);
     })
   }
   // const popularMovies = 
   render() {
     var popularMovies = this.state.popular.map((movie, index) =>
     // let clear = index % 6;
-      <div>
+      <div key={index}>
       <div className={index % 6 === 0 ? "clearfix" : ""}></div>
       <div className="col-md-2" key={index}>
         <img className="thumbnail img-responsive" src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} alt=""/>
