@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {API} from '../config';
+import { Link } from 'react-router-dom';
 
 export default class Movies extends Component {
   constructor(props){
@@ -32,17 +33,17 @@ export default class Movies extends Component {
     var popularMovies = this.state.popular.map((movie, index) =>
     // let clear = index % 6;
       <div>
-      <div className={index % 6 == 0 ? "clearfix" : ""}></div>
+      <div className={index % 6 === 0 ? "clearfix" : ""}></div>
       <div className="col-md-2" key={index}>
         <img className="thumbnail img-responsive" src={'https://image.tmdb.org/t/p/w500'+movie.poster_path} alt=""/>
         <h2>{movie.title}</h2>
         <p></p>
-        <p><a className="btn btn-success" role="button">View details &raquo;</a></p>
+        <p><Link to={`/movie/${movie.id}`} className="btn btn-success">View details &raquo;</Link></p>
       </div>
       </div>
     );
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-success">
         <div className="panel-heading">
           Popular Movies
         </div>
