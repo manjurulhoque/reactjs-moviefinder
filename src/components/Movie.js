@@ -11,6 +11,7 @@ export default class Movie extends Component {
       movie: []
     }
 
+    // functions
     this.getMovie = this.getMovie.bind(this);
   }
 
